@@ -32,8 +32,7 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-        '''
-            Verifies if arguments are greater than 0, then get the index range
+        ''' Verifies if arguments are greater than 0, then get the index range
             and returns values in the range
         '''
         assert isinstance(page, int) and page > 0
