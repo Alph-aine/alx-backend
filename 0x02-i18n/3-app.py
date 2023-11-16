@@ -21,13 +21,13 @@ app.config.from_object(Config)
 @babel.localeselector
 def get_locale():
     '''Determines the best language match for a locale'''
-    return request.accept_languages.best_match(app.Config['LANGUAGES'])
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 @app.route('/', strict_slashes=False)
 def hello_world():
     '''renders html template to the webpage'''
-    return render_template('1-index.html')
+    return render_template('3-index.html')
 
 
 if __name__ == "__main__":

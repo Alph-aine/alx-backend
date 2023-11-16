@@ -2,7 +2,7 @@
 '''Activates babel on the flask app'''
 
 from flask import Flask, render_template, request
-from flask_babel import Babel
+from flask_babel import Babel, _
 
 app = Flask(__name__)
 babel = Babel(app)
@@ -21,13 +21,17 @@ app.config.from_object(Config)
 @babel.localeselector
 def get_locale():
     '''Determines the best language match for a locale'''
-    return request.accept_languages.best_match(app.Config['LANGUAGES'])
+    if 'locale' in request.args:
+        requested_locale = request.args['locale']
+        if requested_locale in app.config['LANGUAGES']:
+            return requested_locale
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 @app.route('/', strict_slashes=False)
 def hello_world():
-    '''Testing'''
-    return render_template('2-index.html')
+    '''renders html template to the webpage'''
+    return render_template('4-index.html')
 
 
 if __name__ == "__main__":
