@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-'''Activates babel on the flask app'''
+'''Gets user locale to enable translation'''
 
 from flask import Flask, render_template, request
 from flask_babel import Babel, _
