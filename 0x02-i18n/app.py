@@ -2,8 +2,9 @@
 '''Gets user locale to enable translation'''
 
 import pytz
+from datetime import datetime
 from flask import Flask, render_template, request, g
-from flask_babel import Babel
+from flask_babel import Babel, format_datetime
 
 
 app = Flask(__name__)
@@ -92,7 +93,10 @@ def get_timezone():
 @app.route('/', strict_slashes=False)
 def hello_world():
     '''renders html template to the webpage'''
-    return render_template('7-index.html')
+    timezone = get_timezone()
+    current_time = datetime.now(pytz.timezone(timezone))
+    current_time = format_datetime(current_time, format='full') 
+    return render_template('index.html', current_time=current_time)
 
 
 if __name__ == "__main__":
